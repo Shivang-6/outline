@@ -32,7 +32,7 @@ function DiagramsNet() {
     service: IntegrationService.Diagrams,
   }) as Integration<IntegrationType.Embed> | undefined;
 
-  const url = integration?.settings.diagrams?.url;
+  const url = integration?.settings.url;
 
   const {
     register,
@@ -60,9 +60,7 @@ function DiagramsNet() {
           type: IntegrationType.Embed,
           service: IntegrationService.Diagrams,
           settings: {
-            diagrams: {
-              url: data.url.replace(/\/?$/, "/"),
-            },
+            url: data.url.replace(/\/?$/, "/"),
           } as Integration<IntegrationType.Embed>["settings"],
         });
 

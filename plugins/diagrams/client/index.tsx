@@ -22,7 +22,7 @@ PluginManager.add([
     type: Hook.InstanceUrl,
     value: {
       service: IntegrationService.Diagrams,
-      url: (settings) => settings.diagrams?.url,
+      url: (settings) => settings.url,
     },
   },
 ]);
