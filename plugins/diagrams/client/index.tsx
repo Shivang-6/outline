@@ -4,6 +4,12 @@ import { Hook, PluginManager } from "~/utils/PluginManager";
 import config from "../plugin.json";
 import Icon from "./Icon";
 
+type LegacySettings = {
+  diagrams?: {
+    url?: string;
+  };
+};
+
 PluginManager.add([
   {
     ...config,
@@ -22,7 +28,9 @@ PluginManager.add([
     type: Hook.InstanceUrl,
     value: {
       service: IntegrationService.Diagrams,
-      url: (settings) => settings.diagrams?.url,
+      url: (settings) =>
+        settings.url ??
+        (settings as LegacySettings).diagrams?.url,
     },
   },
 ]);
