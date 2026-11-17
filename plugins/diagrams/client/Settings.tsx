@@ -23,6 +23,12 @@ type FormData = {
   url: string;
 };
 
+type LegacySettings = {
+  diagrams?: {
+    url?: string;
+  };
+};
+
 function DiagramsNet() {
   const { integrations } = useStores();
   const { t } = useTranslation();
@@ -32,7 +38,9 @@ function DiagramsNet() {
     service: IntegrationService.Diagrams,
   }) as Integration<IntegrationType.Embed> | undefined;
 
-  const url = integration?.settings.url;
+  const url =
+    integration?.settings.url ??
+    (integration?.settings as LegacySettings | undefined)?.diagrams?.url;
 
   const {
     register,
